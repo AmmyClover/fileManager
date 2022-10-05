@@ -25,6 +25,8 @@ private slots:
     void on_listView_doubleClicked(const QModelIndex &index);
     void on_backButton_clicked();
 
+    void on_forwardButton_clicked();
+
 private:
     Ui::widget *ui;
     QFileSystemModel *dirModel;
@@ -35,6 +37,7 @@ private:
 
     void treeWalkingRecord(const QModelIndex &index);
     void disableBackButton();
+    void disableForwardButton();
     void pathTransfer(const QModelIndex &index);
 
 };

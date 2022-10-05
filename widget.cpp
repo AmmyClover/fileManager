@@ -23,6 +23,7 @@ widget::widget(QWidget *parent)
     ui->listView->horizontalHeader()->moveSection(3,1);
     ui->listView->horizontalHeader()->moveSection(2,3);
     ui->backButton->setDisabled(true);
+    ui->forwardButton->setDisabled(true);
 }
 
 widget::~widget()
@@ -47,7 +48,7 @@ void widget::on_treeView_clicked(const QModelIndex &index)
 
 void widget::on_listView_doubleClicked(const QModelIndex &index)
 {
-    qDebug() << "Path dirModel: " << dirModel->fileInfo(index).absoluteFilePath();
+
 
     strPath = dirModel->fileInfo(index).absoluteFilePath();
     if(dirModel->fileInfo(index).isDir())
@@ -68,15 +69,23 @@ void widget::on_listView_doubleClicked(const QModelIndex &index)
 void widget::on_backButton_clicked()
 {
     countTreeWalking--;
+    ui->listView->setRootIndex(memory[countTreeWalking-1]);
 
+    disableForwardButton();
+    disableBackButton();
+    qDebug() << "Path dirModel: " << dirModel->filePath(memory[countTreeWalking-1]);
+    pathTransfer(memory[countTreeWalking-1]);
+}
 
-
+void widget::on_forwardButton_clicked()
+{
+    countTreeWalking++;
     ui->listView->setRootIndex(memory[countTreeWalking-1]);
 
 
+    disableForwardButton();
     disableBackButton();
-
-    qDebug()<<fileModel->rootPath();
+    pathTransfer(memory[countTreeWalking-1]);
 }
 
 void widget::treeWalkingRecord(const QModelIndex &index)
@@ -85,6 +94,7 @@ void widget::treeWalkingRecord(const QModelIndex &index)
     memory.resize(countTreeWalking);
     memory.insert(countTreeWalking-1,fileModel->setRootPath(dirModel->fileInfo(index).absoluteFilePath()));
 
+    disableForwardButton();
     disableBackButton();
 }
 
@@ -100,9 +110,25 @@ void widget::disableBackButton()
     }
 }
 
+void widget::disableForwardButton()
+{
+    qDebug() << countTreeWalking << memory.size();
+    if(countTreeWalking+1 == memory.size())
+    {
+        ui->forwardButton->setDisabled(true);
+    }
+    else
+    {
+        ui->forwardButton->setDisabled(false);
+    }
+}
+
 void widget::pathTransfer(const QModelIndex &index)
 {
-    ui->lineEdit->setText(dirModel->fileInfo(index).absoluteFilePath());
+    ui->lineEdit->setText(dirModel->filePath(index));
 }
+
+
+
 
 
