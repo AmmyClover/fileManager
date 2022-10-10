@@ -2,7 +2,7 @@
 
 ### At the moment, the app looks like this:
 
-![screenshot](https://drive.google.com/file/d/1tnsiaOrChIwityxIUKbGOY8MLGzniy4P/view?usp=sharing)
+![screenshot](https://github.com/AmmyClover/fileManager/blob/main/screenshots/1.PNG)
 
 ### In the future
 - [X] Remembering branch movement :tada:
