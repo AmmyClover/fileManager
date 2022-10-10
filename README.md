@@ -2,7 +2,7 @@
 
 ### At the moment, the app looks like this:
 
-![This is an image](https://drive.google.com/file/d/1tnsiaOrChIwityxIUKbGOY8MLGzniy4P/view?usp=sharing)
+![image](https://drive.google.com/file/d/1tnsiaOrChIwityxIUKbGOY8MLGzniy4P/view?usp=sharing)
 
 ### In the future
 - [X] Remembering branch movement :tada:
